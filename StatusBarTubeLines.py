@@ -1,8 +1,3 @@
-#
-#    Made by lowliet
-#    https://github.com/lowliet
-#
-
 from datetime import datetime
 import xml.etree.ElementTree as et
 
