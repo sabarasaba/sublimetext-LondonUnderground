@@ -1,28 +1,5 @@
-Status Bar Weather
-=========================
-
-Sublime Text 3 package for displaying weather info in status bar
-
-## Preview
-
-![Preview] (https://github.com/lowliet/sublimetext-StatusBarWeather/raw/master/preview_small.png)
-
-![Preview] (https://github.com/lowliet/sublimetext-StatusBarWeather/raw/master/preview.png)
-
---------------
-
-## How to install
-
- - Clone or [download](https://github.com/lowliet/sublimetext-StatusBarWeather/archive/master.zip) git repo into your packages folder
-
-Using [Package Control](http://wbond.net/sublime_packages/package_control):
-
- - Run “Package Control: Install Package” command, and find `StatusBarWeather` package
-
---------------
-
-## Settings
-
+// You should not modify this file because it will be automatically overwritten after update.
+{
 	// Turn on / off debug logs shown on console window
 	"debug": false,
 
@@ -44,5 +21,4 @@ Using [Package Control](http://wbond.net/sublime_packages/package_control):
 	// Each value will be replaced with appropriate weather data, example:
 	// In [City] the weather is [Text] ([Temp][Unit])
 	"format": "[City], [Text], [Temp][Unit]"
-
---------------
+}
