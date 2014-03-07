@@ -10,31 +10,28 @@ import urllib.parse
 
 class StatusBarWeather(sublime_plugin.EventListener):
     def on_activated(self, view):
-        self.display_weather(view)
+        self.displayTubeLines(view)
 
     def load_settings(self):
-        settings = sublime.load_settings('StatusBarWeather.sublime-settings')
-        self._code = settings.get('code', 'UKXX0085').upper()
-        self._unit = settings.get('unit', 'c').lower()
-        self._format = settings.get('format', "[City], [Text], [Temp] Celcius")
-        if self._unit != 'c' and self._unit != 'f':
-            self._unit = 'c'
+        settings = sublime.load_settings('StatusBarTubeLines.sublime-settings')
+        self._lines = settings.get('lines', 'victoria').upper()
         self._debug = settings.get('debug', False)
         if self._debug:
-            print("StatusBarWeather | Settings: {0}, {1}, {2} | {3}".format(self._code, self._unit, self._debug, self.time()))
+            print("StatusBarTubeLines | Settings: Lines({0}) Debug({1}) | {2}".format(self._lines, self._debug, self.time()))
 
-    def fetch_weather(self):
+    def fetchTubeLines(self):
         if hasattr(self, '_debug') and self._debug:
-            print("StatusBarWeather | Fetching weather data | {0}".format(self.time()))
-        if not hasattr(self, '_code') or not hasattr(self, '_unit') or not hasattr(self, '_format'):
-            print("StatusBarWeather | Settings not loaded, reload plugin | {0}".format(self.time()))
+            print("StatusBarTubeLines | Fetching tube lines data | {0}".format(self.time()))
+        if not hasattr(self, '_lines'):
+            print("StatusBarTubeLines | Settings not loaded, reload plugin | {0}".format(self.time()))
         else:
-            self._data = Weather(self._code, self._unit).get_weather()
+            print("fetch actual tube lines data")
+            # self._data = Weather(self._code, self._unit).get_weather()
 
-    def display_weather(self, view, async=True):
+    def displayTubeLines(self, view, async=True):
         self.load_settings()
         if not hasattr(self, '_data') and async:
-            self.fetch_weather()
+            self.fetchTubeLines()
         if hasattr(self, '_data') and sublime.active_window():
             sublime.active_window().active_view().set_status(self._STATUS_KEY, self.format_data(self._data, self._format))
 
@@ -42,15 +39,18 @@ class StatusBarWeather(sublime_plugin.EventListener):
         return datetime.now().strftime('%H:%M:%S')
 
     def format_data(self, data, format):
-        """ Returns weather data as formated string """
+        """ Returns tube lines data as formated string """
         for key, data in data.items():
             format = format.replace('[' + key + ']', data)
         if len(data) == 0:
-            print("StatusBarWeather | Cannot fetch weather, check settings")
+            print("StatusBarTubeLines | Cannot fetch tube lines, check settings")
             format = ""
+
+        format = "StatusBarTubeLines"
+
         return format
 
-    _STATUS_KEY = "statusweather"
+    _STATUS_KEY = "statustubelines"
 
 
 class Weather():
