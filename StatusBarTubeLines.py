@@ -12,6 +12,7 @@ import urllib.request
 import urllib.error
 import urllib.parse
 
+
 class StatusBarWeather(sublime_plugin.EventListener):
     def on_activated(self, view):
         self.display_weather(view)
@@ -28,13 +29,14 @@ class StatusBarWeather(sublime_plugin.EventListener):
             print("StatusBarWeather | Settings: {0}, {1}, {2} | {3}".format(self._code, self._unit, self._debug, self.time()))
 
     def fetch_weather(self):
-        if hasattr(self, '_debug') and self._debug: print("StatusBarWeather | Fetching weather data | {0}".format(self.time()))
+        if hasattr(self, '_debug') and self._debug:
+            print("StatusBarWeather | Fetching weather data | {0}".format(self.time()))
         if not hasattr(self, '_code') or not hasattr(self, '_unit') or not hasattr(self, '_format'):
             print("StatusBarWeather | Settings not loaded, reload plugin | {0}".format(self.time()))
         else:
             self._data = Weather(self._code, self._unit).get_weather()
 
-    def display_weather(self, view, async = True):
+    def display_weather(self, view, async=True):
         self.load_settings()
         if not hasattr(self, '_data') and async:
             self.fetch_weather()
@@ -55,19 +57,20 @@ class StatusBarWeather(sublime_plugin.EventListener):
 
     _STATUS_KEY = "statusweather"
 
+
 class Weather():
     """ Class providing weather service """
     def __init__(self, code, unit):
         """ Constructor """
         self._url = "http://weather.yahooapis.com/forecastrss?p={0}&u={1}".format(code, unit)
 
-    def _get_node(self, root, name, node = ''):
+    def _get_node(self, root, name, node=''):
         """ Retrieves node """
         return root.find(('channel/' + node + '{%s}' + name) % "http://xml.weather.yahoo.com/ns/rss/1.0")
 
     def get_weather(self):
         """ Returns weather information in dictionary """
-        data = { }
+        data = {}
         try:
             root = et.fromstring(urllib.request.urlopen(self._url).read())
             weather_data = self._get_node(root, "condition", "item/")
