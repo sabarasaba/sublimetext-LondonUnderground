@@ -12,7 +12,7 @@ Sublime Text 3 package for displaying information about the London Underground i
 	"debug": true,
 
 	/*
-		Available lines to chose from:
+		Available lines to choose from:
 		Bakerloo, Dlr , Jubilee , Metropolitan , Northern, Overground, Piccadilly, Central, Circle,
 		District, H'Smith & City ,Victoria, Waterloo & City
 	 */
