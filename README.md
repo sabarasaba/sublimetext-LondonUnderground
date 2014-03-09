@@ -1,4 +1,4 @@
-Status London Underground
+London Underground Status
 =========================
 
 Sublime Text 3 package for displaying information about the London Underground in your status bar.
