@@ -13,7 +13,7 @@ class StatusBarWeather(sublime_plugin.EventListener):
         self.displayTubeLines(view)
 
     def load_settings(self):
-        settings = sublime.load_settings('StatusBarTubeLines.sublime-settings')
+        settings = sublime.load_settings('StatusLondonUnderground.sublime-settings')
         self._lines = settings.get('lines', 'victoria').upper()
         self._debug = settings.get('debug', False)
         if self._debug:
@@ -25,7 +25,6 @@ class StatusBarWeather(sublime_plugin.EventListener):
         if not hasattr(self, '_lines'):
             print("StatusBarTubeLines | Settings not loaded, reload plugin | {0}".format(self.time()))
         else:
-            print("fetch actual tube lines data")
             self._data = TubeStatus(self._lines).getTubeStatus()
 
     def displayTubeLines(self, view, async=True):

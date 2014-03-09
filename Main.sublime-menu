@@ -12,17 +12,17 @@
 				"children":
 				[
 					{
-						"caption": "Status Bar Tube Lines",
+						"caption": "Status of the London Underground",
 						"children":
 						[
 							{
 								"command": "open_file",
-								"args": {"file": "${packages}/Status Bar Tube Lines/StatusBarTubeLines.sublime-settings"},
+								"args": {"file": "${packages}/sublimetext-LondonUnderground/StatusLondonUnderground.sublime-settings"},
 								"caption": "Settings – Default"
 							},
 							{
 								"command": "open_file",
-								"args": {"file": "${packages}/User/StatusBarTubeLines.sublime-settings"},
+								"args": {"file": "${packages}/User/StatusLondonUnderground.sublime-settings"},
 								"caption": "Settings – User"
 							}
 						]

@@ -1,15 +1,14 @@
-Status Bar Tube Lines
+Status London Underground
 =========================
 
 Sublime Text 3 package for displaying information about the London Underground in your status bar.
 
-![screenshot] (https://github.com/sabarasaba/sublimetext-StatusBarTubeLines/raw/master/screenshots/01.png)
+![screenshot] (https://github.com/sabarasaba/sublimetext-LondonUnderground/raw/master/screenshots/01.png)
 
 
 ## Settings
 ```
 {
-	// Turn on / off debug logs shown on console window
 	"debug": true,
 
 	/*
